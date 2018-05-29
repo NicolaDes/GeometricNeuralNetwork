@@ -80,6 +80,12 @@ class Matrix : public LAObject<T>
      */
     Matrix<T> operator()(T (*fptr)(T val)) const;
     /**
+     * @brief Define function application operator. This means that if f(T val)
+     * is defined, A(f) will apply f function to all member of A.
+     * @return Matrix with applied function. The original matrix remain unchanged.
+     */
+    Matrix<T> operator()(T (*fptr)()) const;
+    /**
      * @brief Assignmetn operator
      */
     Matrix<T> &operator=(const Matrix<T> &m);

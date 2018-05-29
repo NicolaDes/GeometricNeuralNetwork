@@ -6,7 +6,6 @@ project (${PROJECT} CXX)
 
 set (CURRENT_MAJOR_VERSION 0)
 set (CURRENT_MINOR_VERSION 9)
-set (RELEASE 'alpha')
 
 option(BUILD_DOC "Build documentation" ON)
 find_package(Doxygen)

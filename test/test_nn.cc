@@ -7,8 +7,6 @@
 
 using namespace laobject;
 
-using type = double;
-
 template <typename T>
 constexpr void print_comment(T p_comment)
 {

@@ -81,6 +81,18 @@ Matrix<T> Matrix<T>::operator()(T (*fptr)(T val)) const
 }
 
 template <typename T>
+Matrix<T> Matrix<T>::operator()(T (*fptr)()) const
+{
+    Matrix<T> ret(this->row_offeset_, this->leading_);
+    for (size_t i = 0; i < this->row_offeset_; ++i)
+    {
+        for (size_t j = 0; j < this->leading_; ++j)
+            ret[i][j] = fptr();
+    }
+    return ret;
+}
+
+template <typename T>
 Matrix<T> &Matrix<T>::operator=(const Matrix<T> &m)
 {
     if (this == &m)

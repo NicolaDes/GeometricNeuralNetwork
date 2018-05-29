@@ -93,6 +93,12 @@ class Vector : public LAObject<T>
      */
     Vector<T> operator()(T (*fptr)(T val)) const;
     /**
+     * @brief Define function application operator. This means that if f(T val)
+     * is defined, V(f) will apply f function to all member of V.
+     * @return Vector with applied function. The original vector remain unchanged.
+     */
+    Vector<T> operator()(T (*fptr)()) const;
+    /**
      * @brief Hadamard product of two vector
      * @return Vector. The original vector remain unchanged.
      */

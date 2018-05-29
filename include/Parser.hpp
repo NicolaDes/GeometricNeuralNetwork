@@ -8,7 +8,7 @@
 namespace hand_number
 {
 template <typename T>
-void fillFromFile(const char *file, laobject::Vector<laobject::Vector<T>> &inputs, laobject::Vector<laobject::Vector<T>> &outputs, size_t h, size_t w, size_t outsize)
+void fillFromFile(std::string file, laobject::Vector<laobject::Vector<T>> &inputs, laobject::Vector<laobject::Vector<T>> &outputs, size_t h, size_t w, size_t outsize)
 {
 	std::ifstream fin(file);
 	if(!fin.is_open())

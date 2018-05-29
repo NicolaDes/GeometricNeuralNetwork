@@ -109,6 +109,17 @@ Vector<T> Vector<T>::operator()(T (*fptr)(T val)) const
 }
 
 template <typename T>
+Vector<T> Vector<T>::operator()(T (*fptr)()) const
+{
+    Vector<T> ret(this->size_);
+    for (size_t i = 0; i < this->size_; ++i)
+    {
+        ret[i] = fptr();
+    }
+    return ret;
+}
+
+template <typename T>
 Vector<T> Vector<T>::operator,(const Vector<T> &v)
 {
     if (this->size_ != v.size_)

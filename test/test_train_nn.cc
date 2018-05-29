@@ -1,11 +1,9 @@
-#define PARSER_TEST_MODULE
+#define TRAIN_TEST_MODULE
 #include "Parser.hpp"
 #include "Vector.hpp"
 #include "NN.hpp"
 #include <random>
 #include <chrono>
-
-using type = double;
 
 template <typename T>
 constexpr void print_comment(T p_comment)

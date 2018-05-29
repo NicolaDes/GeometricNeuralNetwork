@@ -4,6 +4,7 @@ set(TEST_SUITE
     test_nn
     test_parser
     test_train_nn
+    test_random
 )
 
 foreach(test ${TEST_SUITE})

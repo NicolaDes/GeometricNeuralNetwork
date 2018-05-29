@@ -2,10 +2,6 @@
 #include "Parser.hpp"
 #include "Vector.hpp"
 #include "NN.hpp"
-#include <random>
-#include <chrono>
-
-using type = double;
 
 template <typename T>
 constexpr void print_comment(T p_comment)
@@ -27,4 +23,15 @@ int main()
 	hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
 	
+
+	std::ifstream file(pos);
+	unsigned line_count = 0;
+
+	std::string line;
+	while(std::getline(file,line))
+		++line_count;
+
+	std::cout<<"Line count: "<<line_count<<"\n";
+
+	return 0;	
 }

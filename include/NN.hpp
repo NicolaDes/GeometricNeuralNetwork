@@ -97,7 +97,7 @@ public:
 	 * @return A vector of matrix wich is all the links  between nodes
 	 */
 	const Vector<Matrix<type>> getWeights();
-	
+
 };
 
 #include "NN.i.hpp"

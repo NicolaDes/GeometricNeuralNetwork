@@ -78,7 +78,6 @@ void NN::train(Vector<Vector<type>> &inputs, Vector<Vector<type>> &outputs, type
     size_t i = 0;
     std::cout << "Training the network with " << size << " elements...\n";
 
-#pragma unroll
     for (; i < size; ++i)
     {
         std::cout << std::right << std::setw(6) << "[" << static_cast<int>(i * 100 / size) << "%]"
