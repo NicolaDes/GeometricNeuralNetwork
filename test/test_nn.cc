@@ -33,4 +33,4 @@ int main()
 	nn.train(inputs,outputs,0.8);
 
 	return 0;
-};
+}

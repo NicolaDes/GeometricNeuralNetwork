@@ -27,4 +27,4 @@ int main()
 	hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
 	
-};
+}

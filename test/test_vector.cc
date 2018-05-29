@@ -13,7 +13,7 @@ constexpr void print_comment(T p_comment)
 {
     std::cout << p_comment << "\n";
     std::cout.flush();
-};
+}
 
 type vals(type val) { return val; }
 
