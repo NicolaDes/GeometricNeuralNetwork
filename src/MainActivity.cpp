@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 
     if (vm.count("train")) {
         std::string file = vm["train"].as<std::string>();
-        std::ifstream train_in(configuration.train_set);
+        std::ifstream train_in(file);
         unsigned line_count = 0;
 
         std::string line;
@@ -114,7 +114,7 @@ int main(int argc, char **argv)
         laobject::Vector<laobject::Vector<type>> outputs_train(line_count);
 
         std::cout << "Loading data...\n";
-        hand_number::fillFromFile(configuration.train_set, inputs_train,
+        hand_number::fillFromFile(file, inputs_train,
                                   outputs_train, 28, 28, 10);
         print_green("Data loaded!\n");
 
