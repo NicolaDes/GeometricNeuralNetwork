@@ -27,8 +27,8 @@ if(NOT WGET)
 	message(WARNING "missing wget, check the site https://pjreddie.com/projects/mnist-in-csv to download datasets!")
 else()
 	add_custom_target(get_csv 
-	wget https://pjreddie.com/media/files/mnist_train.csv ../data/mnist_train.csv && 
-	wget https://pjreddie.com/media/files/mnist_test.csv ../data/mnist_test.csv)
+	wget https://pjreddie.com/media/files/mnist_train.csv --output-document=../data/mnist_train.csv
+	wget https://pjreddie.com/media/files/mnist_test.csv --output-document=../data/mnist_test.csv)
 endif()
 
 # Valgrind check
