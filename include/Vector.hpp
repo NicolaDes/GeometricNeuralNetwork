@@ -10,8 +10,8 @@
 
 #include "LAObject.hpp"
 
-#include <ostream>
 #include <iostream>
+#include <ostream>
 
 /// @brief Namespace brief
 ///        This is a vector object of linear algebra
@@ -20,14 +20,11 @@ namespace laobject
 
 /// @brief Matrix class friend
 /// @tparam T Type of elements inside the vector object
-template <typename T>
-class Matrix;
-
+template <typename T> class Matrix;
 
 /// @brief This class model a vector of elements.
 /// @tparam T Class template for linear algebra vector (in general numbers)
-template <typename T>
-class Vector : public LAObject<T>
+template <typename T> class Vector : public LAObject<T>
 {
   public:
     /// Default constructor and constructor specifying size.
@@ -54,21 +51,24 @@ class Vector : public LAObject<T>
     size_t cols() const;
 
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to element in position i=1.
+    * @brief Return pointer to location @p row. For example V[1] access to
+    * element in position i=1.
     * @return read only pointer to @tparam T
     */
     T at(size_t index) const;
-    
-    ///Operators
+
+    /// Operators
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to element in position i=1.
-    * @return read only element to 
+    * @brief Return pointer to location @p row. For example V[1] access to
+    * element in position i=1.
+    * @return read only element to
     */
     T operator[](size_t index) const;
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to element in position i=1.
+    * @brief Return pointer to location @p row. For example V[1] access to
+    * element in position i=1.
     * V[5]=219.1 is a valid operation.
-    * @return read and write reference to 
+    * @return read and write reference to
     */
     T &operator[](size_t index);
     /**
@@ -89,13 +89,15 @@ class Vector : public LAObject<T>
     /**
      * @brief Define function application operator. This means that if f(T val)
      * is defined, V(f) will apply f function to all member of V.
-     * @return Vector with applied function. The original vector remain unchanged.
+     * @return Vector with applied function. The original vector remain
+     * unchanged.
      */
     Vector<T> operator()(T (*fptr)(T val)) const;
     /**
      * @brief Define function application operator. This means that if f(T val)
      * is defined, V(f) will apply f function to all member of V.
-     * @return Vector with applied function. The original vector remain unchanged.
+     * @return Vector with applied function. The original vector remain
+     * unchanged.
      */
     Vector<T> operator()(T (*fptr)()) const;
     /**
@@ -131,16 +133,14 @@ class Vector : public LAObject<T>
     friend Matrix<T> operator*(const Vector<T> &v1, const Vector<T> &v2)
     {
         Matrix<T> ret(v1.size_, v2.size_);
-        for (size_t i = 0; i < v1.size_; ++i)
-        {
-            for (size_t j = 0; j < v2.size_; ++j)
-            {
+        for (size_t i = 0; i < v1.size_; ++i) {
+            for (size_t j = 0; j < v2.size_; ++j) {
                 ret[i][j] = v1.values_[i] * v2.values_[j];
             }
         }
         return ret;
     }
 };
-} //namespace laobject
+} // namespace laobject
 
 #include "Vector.i.hpp"

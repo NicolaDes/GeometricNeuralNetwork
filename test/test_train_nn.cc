@@ -7,35 +7,33 @@
  * @file
  */
 #define TRAIN_TEST_MODULE
+#include "NN.hpp"
 #include "Parser.hpp"
 #include "Vector.hpp"
-#include "NN.hpp"
-#include <random>
 #include <chrono>
+#include <random>
 
-template <typename T>
-constexpr void print_comment(T p_comment)
+template <typename T> constexpr void print_comment(T p_comment)
 {
-	std::cout << p_comment << "\n";
-	std::cout.flush();
+    std::cout << p_comment << "\n";
+    std::cout.flush();
 }
 
 int main()
 {
-	const char* pos = "../../data/mnist_train.csv";
+    const char *pos = "../../data/mnist_train.csv";
 
-	laobject::Vector<laobject::Vector<type> > inputs(6000);
-	laobject::Vector<laobject::Vector<type> > outputs(6000);
+    laobject::Vector<laobject::Vector<type>> inputs(6000);
+    laobject::Vector<laobject::Vector<type>> outputs(6000);
 
-	print_comment<const char*>("Opening file...");
-	print_comment<const char*>(pos);
+    print_comment<const char *>("Opening file...");
+    print_comment<const char *>(pos);
 
-	hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
+    hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
-    print_comment<const char*>("Training the network...");
-    
-    NN nn(784,15,10);
+    print_comment<const char *>("Training the network...");
 
-    nn.train(inputs,outputs,0.8);
-	
+    NN nn(784, 15, 10);
+
+    nn.train(inputs, outputs, 0.8);
 }

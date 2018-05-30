@@ -16,8 +16,7 @@ using namespace laobject;
 
 using type = double;
 
-template <typename T>
-constexpr void print_comment(T p_comment)
+template <typename T> constexpr void print_comment(T p_comment)
 {
     std::cout << p_comment << "\n";
     std::cout.flush();
@@ -58,7 +57,9 @@ void testFunciton(Vector<type> &m)
 
 int main()
 {
-    print_comment<const char *>("////////////////////////////////\nTest with matrix with double type\n////////////////////////////////\n");
+    print_comment<const char *>("////////////////////////////////\nTest with "
+                                "matrix with double "
+                                "type\n////////////////////////////////\n");
     Vector<type> m1(3);
     m1[0] = static_cast<type>(3);
     m1[1] = static_cast<type>(23);

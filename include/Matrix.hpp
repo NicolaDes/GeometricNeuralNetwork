@@ -10,8 +10,8 @@
 
 #include "LAObject.hpp"
 
-#include <ostream>
 #include <iostream>
+#include <ostream>
 
 /// @brief This is a matrix object of linear algebra
 namespace laobject
@@ -19,17 +19,15 @@ namespace laobject
 
 /// @brief Vector class friend
 /// @tparam T Type of elements inside the vector object
-template <typename T>
-class Vector;
+template <typename T> class Vector;
 
 /// @brief This class model a matrix of elements.
 /// @tparam T Class template for linear algebra matrix (in general numbers)
-template <typename T>
-class Matrix : public LAObject<T>
+template <typename T> class Matrix : public LAObject<T>
 {
   protected:
-    size_t row_offeset_{0}; ///number of cols before new row
-    size_t leading_{0};     ///number of rows
+    size_t row_offeset_{0}; /// number of cols before new row
+    size_t leading_{0};     /// number of rows
 
   public:
     /// Default constructor and constructor specifying rows and cols.
@@ -55,34 +53,39 @@ class Matrix : public LAObject<T>
      */
     size_t cols() const;
 
-    ///Operators
-    
+    /// Operators
+
     /**
-    * @brief Return pointer to location @p row. For example A[1][1] access to element in position i=1,j=1.
+    * @brief Return pointer to location @p row. For example A[1][1] access to
+    * element in position i=1,j=1.
     * @return read only pointer to @tparam T
     */
     T *operator[](size_t row) const;
     /**
-    * @brief Return pointer to location @p row. For example A[1][1] access to element in position i=1,j=1.
+    * @brief Return pointer to location @p row. For example A[1][1] access to
+    * element in position i=1,j=1.
     *         Also A[1][1]=32 is a valid operation.
     * @return read and write pointer to @tparam T
     */
     T *operator[](size_t row);
     /**
-     * @brief Define the transpose operator of a matrix. Return the transposed matrix.
+     * @brief Define the transpose operator of a matrix. Return the transposed
+     * matrix.
      * @return Matrix, this operation will not modify original matrix.
     */
     Matrix<T> operator~() const;
     /**
      * @brief Define function application operator. This means that if f(T val)
      * is defined, A(f) will apply f function to all member of A.
-     * @return Matrix with applied function. The original matrix remain unchanged.
+     * @return Matrix with applied function. The original matrix remain
+     * unchanged.
      */
     Matrix<T> operator()(T (*fptr)(T val)) const;
     /**
      * @brief Define function application operator. This means that if f(T val)
      * is defined, A(f) will apply f function to all member of A.
-     * @return Matrix with applied function. The original matrix remain unchanged.
+     * @return Matrix with applied function. The original matrix remain
+     * unchanged.
      */
     Matrix<T> operator()(T (*fptr)()) const;
     /**
@@ -118,8 +121,7 @@ class Matrix : public LAObject<T>
     {
         Matrix<T> ret(m.row_offeset_, m.leading_);
         ret = m;
-        for (size_t i = 0; i < m.row_offeset_; ++i)
-        {
+        for (size_t i = 0; i < m.row_offeset_; ++i) {
             for (size_t j = 0; j < m.leading_; ++j)
                 ret[i][j] *= scalar;
         }
@@ -129,8 +131,7 @@ class Matrix : public LAObject<T>
     /// Print on a stream!
     friend std::ostream &operator<<(std::ostream &stream, const Matrix<T> &m)
     {
-        for (size_t i = 0; i < m.row_offeset_; ++i)
-        {
+        for (size_t i = 0; i < m.row_offeset_; ++i) {
             for (size_t j = 0; j < m.leading_; ++j)
                 stream << m.values_[i * m.leading_ + j] << " ";
             stream << "\n";
@@ -146,24 +147,21 @@ class Matrix : public LAObject<T>
      */
     friend Vector<T> operator*(const Vector<T> &v, const Matrix<T> &m)
     {
-        if (v.size() != m.row_offeset_)
-        {
+        if (v.size() != m.row_offeset_) {
             std::cerr << "v1.size_, v2.rows do not match!\n";
             std::exit(EXIT_FAILURE);
         }
 
         Vector<T> ret(m.leading_);
-        for (size_t i = 0; i < m.leading_; ++i)
-        {
+        for (size_t i = 0; i < m.leading_; ++i) {
             ret[i] = 0;
-            for (size_t j = 0; j < v.size(); ++j)
-            {
+            for (size_t j = 0; j < v.size(); ++j) {
                 ret[i] += v[j] * m.values_[j * m.leading_ + i];
             }
         }
         return ret;
     }
 };
-} //namespace laobject
+} // namespace laobject
 
 #include "Matrix.i.hpp"
