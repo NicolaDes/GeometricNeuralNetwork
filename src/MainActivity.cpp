@@ -28,11 +28,16 @@ unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::default_random_engine generator = std::default_random_engine(seed);
 std::uniform_real_distribution<type> distribution(0, 1);
 
+/// fully specialization
 template <> type randomize() { return distribution(generator); }
 
 void print_green(const std::string comment)
 {
     std::cout << "\033[1;32m" << comment << "\033[0m";
+}
+void print_yellow(const std::string comment)
+{
+    std::cout << "\033[1;33m" << comment << "\033[0m";
 }
 
 struct NNConfiguration {
@@ -160,5 +165,9 @@ int main(int argc, char **argv)
 
     if (vm.size() == 0) /// default launch
     {
+        print_yellow("You need to launch with parameters, see the docs!\n \
+        Sorry but this is a pre-alpha version XD\n");
+        std::cout<<description<<"\n";
     }
+    return 0;
 } // main

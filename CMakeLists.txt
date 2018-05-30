@@ -1,12 +1,14 @@
 cmake_minimum_required (VERSION 3.5.1)
 
-set (PROJECT"NeuralNetwork")
+set (PROJECT"GeometricNeuralNetwork")
 
 project (${PROJECT} CXX)
 
+# Verion of the program
 set (CURRENT_MAJOR_VERSION 0)
 set (CURRENT_MINOR_VERSION 9)
 
+# Doxygen documentation setup
 option(BUILD_DOC "Build documentation" ON)
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
@@ -18,6 +20,16 @@ if(DOXYGEN_FOUND)
 else (DOXYGEN_FOUND)
 	message("Doxygen need to be installed to generate the doxygen documentation")
 endif(DOXYGEN_FOUND)
+
+# Medium dataset download
+find_program(WGET wget)
+if(NOT WGET)
+	message(WARNING "missing wget, check the site https://pjreddie.com/projects/mnist-in-csv to download datasets!")
+else()
+	add_custom_target(get_csv 
+	wget https://pjreddie.com/media/files/mnist_train.csv ../data/mnist_train.csv && 
+	wget https://pjreddie.com/media/files/mnist_test.csv ../data/mnist_test.csv)
+endif()
 
 # EXTERNAL LIBRARIES
 include (CheckCXXCompilerFlag)

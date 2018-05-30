@@ -67,4 +67,24 @@ file:
 \code
 ./vectorNeuralNetwork -w ../data/weights1.data -t ../data/train_set.csv -p ../data/test_set.csv -s weights2.data
 \endcode
+
+Inside the direcotry \b data there are small training and test sets.
+
+And a typical usage of the program is:
+
+\b NB: inside of buid directory
+
+\code
+./vectorNeuralNetwork -t ../data/train_set.csv -p ../data/test_set.csv -s weights.data
+\endcode
+And then it is possible to launch the network over 8.csv file:
+\code
+./vectorNeuralNetwork -p ../data/8.csv -w weights.data
+\endcode
+
+Obviously the test set is pretty small, so the result will be bad. Below is
+described how to get better dataset.
+
+To download the dataset you can visit https://pjreddie.com/projects/mnist-in-csv
+or use \code make get_csv \endcode from build directory with cmake configuration.
 */

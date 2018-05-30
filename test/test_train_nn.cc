@@ -23,8 +23,16 @@ int main()
 {
     const char *pos = "../../data/mnist_train.csv";
 
-    laobject::Vector<laobject::Vector<type>> inputs(6000);
-    laobject::Vector<laobject::Vector<type>> outputs(6000);
+    std::ifstream file(pos);
+
+    unsigned line_count = 0;
+
+    std::string line;
+    while (std::getline(file, line))
+        ++line_count;
+
+    laobject::Vector<laobject::Vector<type>> inputs(line_count);
+    laobject::Vector<laobject::Vector<type>> outputs(line_count);
 
     print_comment<const char *>("Opening file...");
     print_comment<const char *>(pos);

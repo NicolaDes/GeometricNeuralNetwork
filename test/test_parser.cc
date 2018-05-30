@@ -21,22 +21,21 @@ int main()
 {
     const char *pos = "../../data/mnist_train.csv";
 
-    laobject::Vector<laobject::Vector<type>> inputs(60000);
-    laobject::Vector<laobject::Vector<type>> outputs(60000);
-
-    print_comment<const char *>("Opening file...");
-    print_comment<const char *>(pos);
-
-    hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
-
     std::ifstream file(pos);
+
     unsigned line_count = 0;
 
     std::string line;
     while (std::getline(file, line))
         ++line_count;
 
-    std::cout << "Line count: " << line_count << "\n";
+    laobject::Vector<laobject::Vector<type>> inputs(line_count);
+    laobject::Vector<laobject::Vector<type>> outputs(line_count);
+
+    print_comment<const char *>("Opening file...");
+    print_comment<const char *>(pos);
+
+    hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
     return 0;
 }
