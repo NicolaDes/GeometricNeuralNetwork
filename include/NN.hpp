@@ -13,10 +13,12 @@
 #include "Matrix.hpp"
 
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <ostream>
 #include <random>
 #include <chrono>
+#include <cassert>
 
 using type = double; ///type of templates (laobject)
 
@@ -78,25 +80,35 @@ public:
 	 * @param[in] alpha Growth factor
 	 */
 	void train(Vector<Vector<type>> &inputs, Vector<Vector<type>> &outputs, type alpha);
-	
+
 	/**
-	 * @brief Get the output layer
-	 * @return output layers (laobject::Vector<type>)
+	 * @brief Verify if the current output is correct respect the expected.
+	 * @return True if correct, False otherwise.
 	 */
-	const Vector<type> getOut();
-	
+	bool isCorrect(Vector<type> &expected);	
 	/**
 	 * @brief Submit to the networ an input.
 	 * @warning input and X must have the same dimension
-	 * @return The last layer wich is the output
 	 */
-	const Vector<type> submit(Vector<type> &input);
+	void submit(Vector<type> &input);
 
 	/**
 	 * @brief Return the weight of each node of the network
 	 * @return A vector of matrix wich is all the links  between nodes
 	 */
 	const Vector<Matrix<type>> getWeights();
+
+	/**
+	 * @brief Save the weights in a specific file
+	 * @param file the file where the weights will be stored
+	 */
+	void saveWeights(const std::string& file);
+
+	/**
+	 * @brief Load the weights from a specific file
+	 * @param file the file where the weights will be read
+	 */
+	void loadWeights(const std::string& file);
 
 };
 

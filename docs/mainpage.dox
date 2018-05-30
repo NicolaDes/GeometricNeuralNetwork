@@ -1,0 +1,61 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b Geometry \b Neural \b Network is a Neural Network wich exploit linear algebra 
+objects to compute neural network operations. In general with a set of operations
+between linear algebra objects any form of the NN can be done. For example 
+also a Neural Network composed with cubes can be done. 
+This operations are:
+- Dot product
+- Transpose
+- Addition
+- Subtraction
+- Hadamard product (element to element)
+- Multiplication with a scalar
+- Apply a function to every element of linear algebra object
+
+
+\section implementation Vector implementation
+This is the easiest vector implementation where each layer is composed by vectors
+self implemented. The aim of this Neural Network is to recognize hand number digits,
+wich means convert a hand written number into a [0,9] val.
+
+\section Depenencies
+
+The external libraries needed are:
+- Boost
+- dot [graphviz]
+
+
+\section Usage
+\verbatim
+$ mkdir build && cd build
+\endverbatim
+\verbatim
+$ cmake ..
+\endverbatim
+\verbatim
+$ make
+\endverbatim
+\verbatim
+$ make test
+\endverbatim
+and everything should return SUCCES
+\verbatim
+$ ./nn -h
+\endverbatim
+to see usage
+\verbatim
+$ node_type1 [standard ROS args]
+\endverbatim
+
+\par Example
+
+\verbatim
+$ ./nn -f ../data/mnist_train.csv ../data/mnist_test.csv
+\endverbatim
+
+
+
+*/

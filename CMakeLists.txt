@@ -51,6 +51,10 @@ add_library(NN "src/NN.cpp")
 enable_testing()
 add_subdirectory(test)
 
-add_executable(nn src/MainActivity.cpp)
-target_link_libraries(nn NN)
-target_link_libraries(nn ${Boost_LIBRARIES})
+add_executable(vectorNeuralNetwork src/MainActivity.cpp)
+target_link_libraries(vectorNeuralNetwork NN)
+target_link_libraries(vectorNeuralNetwork ${Boost_LIBRARIES})
+
+install(TARGETS vectorNeuralNetwork
+		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
+		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib)
