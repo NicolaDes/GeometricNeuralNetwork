@@ -1,3 +1,11 @@
+/**
+ * @copyright GeometricNeuralNetwork
+ * license Apache2
+ * @author Nicola Dessi'
+ * @version v1.0
+ * @date May, 2018
+ * @file
+ */
 #include "Config.h"
 #include "Parser.hpp"
 #include "Vector.hpp"
@@ -23,6 +31,11 @@ template <>
 type randomize()
 {
     return distribution(generator);
+}
+
+void print_green(const std::string comment)
+{
+    std::cout<<"\033[1;32m"<<comment<<"\033[0m";
 }
 
 struct NNConfiguration
@@ -72,7 +85,7 @@ int main(int argc, char **argv)
         std::string file = vm["weights"].as<std::string>();
         std::cout << "Loading the weights from file " << file << "...\n";
         nn.loadWeights(file);
-        std::cout << "Weights loaded!\n";
+        print_green("Weights loaded!\n");
     }
 
     if (vm.count("train"))
@@ -88,11 +101,13 @@ int main(int argc, char **argv)
         laobject::Vector<laobject::Vector<type>> inputs_train(line_count);
         laobject::Vector<laobject::Vector<type>> outputs_train(line_count);
 
+        std::cout<<"Loading data...\n";
         hand_number::fillFromFile(configuration.train_set, inputs_train, outputs_train, 28, 28, 10);
+        print_green("Data loaded!\n");
 
         nn.train(inputs_train, outputs_train, configuration.alpha);
 
-        std::cout << "Network trained!\n";
+        print_green("Network trained!\n");
     }
 
     if (vm.count("save"))
@@ -100,7 +115,7 @@ int main(int argc, char **argv)
         std::string file = vm["save"].as<std::string>();
         std::cout << "Saving the weights in file " << file << "...\n";
         nn.saveWeights(file);
-        std::cout << "Weights saved!\n";
+        print_green("Weights saved!\n");
     }
 
     if (vm.count("put-up"))
@@ -116,7 +131,9 @@ int main(int argc, char **argv)
 
         laobject::Vector<Vector<type>> inputs(line_count);
         laobject::Vector<Vector<type>> outputs(line_count);
+        std::cout<<"Loading data...\n";
         hand_number::fillFromFile(filename, inputs, outputs, 28, 28, 10);
+        print_green("Data loaded!\n");
         std::cout << "Submitting test case to the network...\n";
         unsigned correct = 0;
         for (size_t i = 0; i < line_count; ++i)
@@ -125,14 +142,9 @@ int main(int argc, char **argv)
             if (nn.isCorrect(outputs[i]))
                 correct++;
         }
-        std::cout<<"Test case submitted. Saving log...\n";
-        std::ofstream log("vectorNeuralNetwork.log");
-        std::cout<<"Correct: "<<correct<<"\nWrong: "<<line_count-correct<<"\nPercentage of success: "<<(static_cast<double>(correct)/static_cast<double>(line_count))*100<<" %\n";
-        log<<"Correct: "<<correct<<"\nWrong: "<<line_count-correct<<"\nPercentage of success: "<<(static_cast<double>(correct)/static_cast<double>(line_count))*100<<" %\n";
-
-
-        log.close();
-        std::cout<<"Log saved!\n";
+        print_green("Test case submitted!\n\n");
+        std::cout<<"-- Result of the computation --\n";
+        std::cout<<"Correct: "<<correct<<"\nWrong: "<<line_count-correct<<"\nPercentage of success: "<<(static_cast<double>(correct)/static_cast<double>(line_count))*100<<" %\n\n";
     }
 
     if(vm.size()==0) ///default launch

@@ -1,3 +1,11 @@
+/**
+ * @copyright GeometricNeuralNetwork
+ * license Apache2
+ * @author Nicola Dessi'
+ * @version v1.0
+ * @date May, 2018
+ * @file
+ */
 #define PARSER_TEST_MODULE
 #include "Parser.hpp"
 #include "Vector.hpp"

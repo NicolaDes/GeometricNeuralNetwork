@@ -1,6 +1,6 @@
 /**
- * @copyright MultiformNN
- * license MIT
+ * @copyright GeometricNeuralNetwork
+ * license Apache2
  * @author Nicola Dessi'
  * @version v1.0
  * @date May, 2018

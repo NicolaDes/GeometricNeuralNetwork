@@ -1,5 +1,5 @@
 /**
- * @copyright MultiformNN
+ * @copyright GeometricNeuralNetwork
  * license Apache2
  * @author Nicola Dessi'
  * @version v1.0

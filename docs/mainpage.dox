@@ -5,7 +5,7 @@
 \b Geometry \b Neural \b Network is a Neural Network wich exploit linear algebra 
 objects to compute neural network operations. In general with a set of operations
 between linear algebra objects any form of the NN can be done. For example 
-also a Neural Network composed with cubes can be done. 
+also a Neural Network where each layer is a cube can be done.
 This operations are:
 - Dot product
 - Transpose
@@ -14,6 +14,7 @@ This operations are:
 - Hadamard product (element to element)
 - Multiplication with a scalar
 - Apply a function to every element of linear algebra object
+- Multiplication with a matrix
 
 
 \section implementation Vector implementation
@@ -24,38 +25,46 @@ wich means convert a hand written number into a [0,9] val.
 \section Depenencies
 
 The external libraries needed are:
-- Boost
-- dot [graphviz]
+- \b Boost, used to manage program options
+- \b dot [graphviz]
 
 
 \section Usage
 \verbatim
 $ mkdir build && cd build
 \endverbatim
+Will create the build directory
 \verbatim
 $ cmake ..
 \endverbatim
+Will create the makefiles and custom targets
 \verbatim
 $ make
 \endverbatim
+Will compile the library
 \verbatim
 $ make test
 \endverbatim
-and everything should return SUCCES
+Will launch tests for each module
 \verbatim
-$ ./nn -h
+$ ./vectorNeuralNetwork -h
 \endverbatim
 to see usage
-\verbatim
-$ node_type1 [standard ROS args]
-\endverbatim
-
 \par Example
-
 \verbatim
-$ ./nn -f ../data/mnist_train.csv ../data/mnist_test.csv
+$ ./vectorNeuralNetwork -t ../data/mnist_train.csv 
 \endverbatim
 
+\subsection istructions Parameters istructions
+- \code -s [--save] \endcode will save the configuration weigths at the end of the computation
+- \code -t [--train] arg \endcode will train the network with \i arg file in csv format
+- \code -p [--put-up] arg \endcode will submit a test set \i arg file in csv format
+- \code -w [--weigths] arg \endcode will load the weights from a file in data format
 
-
+Multiple options can be concatenated, for example it is possible to load a current weights configuration, then train
+the network with a specific train_set file, submit a test_set file and at the end store the end configuration in an other
+file:
+\code
+./vectorNeuralNetwork -w ../data/weights1.data -t ../data/train_set.csv -p ../data/test_set.csv -s weights2.data
+\endcode
 */

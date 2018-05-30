@@ -1,3 +1,11 @@
+/**
+ * @copyright GeometricNeuralNetwork
+ * license Apache2
+ * @author Nicola Dessi'
+ * @version v1.0
+ * @date May, 2018
+ * @file
+ */
 #pragma once
 
 #include "Vector.hpp"
@@ -7,19 +15,21 @@
 
 namespace hand_number
 {
+/**
+	 * @brief Fill inputs and outputs vector of vectors with a csv format input filee
+	 * @tparam T type of neural network 
+	 */
 template <typename T>
 void fillFromFile(std::string file, laobject::Vector<laobject::Vector<T>> &inputs, laobject::Vector<laobject::Vector<T>> &outputs, size_t h, size_t w, size_t outsize)
 {
 	std::ifstream fin(file);
-	if(!fin.is_open())
+	if (!fin.is_open())
 	{
-		std::cerr<<"Error, no file was found with name "<<file<<"\n";
+		std::cerr << "Error, no file was found with name " << file << "\n";
 		std::exit(2);
 	}
 	size_t training_set;
 	training_set = inputs.size();
-	std::cout << "Loading data...\n";
-
 	for (size_t k = 0; k < training_set; ++k)
 	{
 		std::cout << std::right << std::setw(6) << "[" << static_cast<int>(k * 100 / training_set) << "%]"
@@ -49,6 +59,5 @@ void fillFromFile(std::string file, laobject::Vector<laobject::Vector<T>> &input
 	}
 	std::cout << std::right << std::setw(6) << "[" << 100 << "%]"
 			  << "\r";
-	std::cout << "\nData loaded!\n";
 }
 } // namespace hand_number
