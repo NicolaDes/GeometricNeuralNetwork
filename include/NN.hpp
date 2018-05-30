@@ -111,6 +111,17 @@ class NN
      * @param file the file where the weights will be read
      */
     void loadWeights(const std::string &file);
+
+    /**
+    * @brief Fill inputs and outputs vector of vectors with a csv format
+    * input filee
+    * @tparam T type of neural network
+    */
+    template <typename T>
+    static void fillFromFile(std::string file,
+                  laobject::Vector<laobject::Vector<T>> &inputs,
+                  laobject::Vector<laobject::Vector<T>> &outputs, size_t h,
+                  size_t w, size_t outsize);
 };
 
 #include "NN.i.hpp"

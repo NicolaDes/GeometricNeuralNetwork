@@ -8,7 +8,6 @@
  */
 #define PARSER_TEST_MODULE
 #include "NN.hpp"
-#include "Parser.hpp"
 #include "Vector.hpp"
 
 template <typename T> constexpr void print_comment(T p_comment)
@@ -35,7 +34,7 @@ int main()
     print_comment<const char *>("Opening file...");
     print_comment<const char *>(pos);
 
-    hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
+    NN::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
     return 0;
 }

@@ -8,7 +8,6 @@
  */
 #define TRAIN_TEST_MODULE
 #include "NN.hpp"
-#include "Parser.hpp"
 #include "Vector.hpp"
 #include <chrono>
 #include <random>

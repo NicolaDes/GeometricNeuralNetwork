@@ -9,7 +9,6 @@
 #include "Config.h"
 #include "Matrix.hpp"
 #include "NN.hpp"
-#include "Parser.hpp"
 #include "Vector.hpp"
 
 #include "boost/program_options.hpp"
@@ -29,13 +28,17 @@ std::default_random_engine generator = std::default_random_engine(seed);
 std::uniform_real_distribution<type> distribution(0, 1);
 
 /// fully specialization
-template <> type randomize() { return distribution(generator); }
+template <>
+type randomize() 
+{ 
+    return distribution(generator); 
+}
 
-void print_green(const std::string comment)
+void print_green(const std::string& comment)
 {
     std::cout << "\033[1;32m" << comment << "\033[0m";
 }
-void print_yellow(const std::string comment)
+void print_yellow(const std::string& comment)
 {
     std::cout << "\033[1;33m" << comment << "\033[0m";
 }
@@ -114,7 +117,7 @@ int main(int argc, char **argv)
         laobject::Vector<laobject::Vector<type>> outputs_train(line_count);
 
         std::cout << "Loading data...\n";
-        hand_number::fillFromFile(file, inputs_train,
+        NN::fillFromFile(file, inputs_train,
                                   outputs_train, 28, 28, 10);
         print_green("Data loaded!\n");
 
@@ -143,7 +146,7 @@ int main(int argc, char **argv)
         laobject::Vector<Vector<type>> inputs(line_count);
         laobject::Vector<Vector<type>> outputs(line_count);
         std::cout << "Loading data...\n";
-        hand_number::fillFromFile(filename, inputs, outputs, 28, 28, 10);
+        NN::fillFromFile(filename, inputs, outputs, 28, 28, 10);
         print_green("Data loaded!\n");
         std::cout << "Submitting test case to the network...\n";
         unsigned correct = 0;

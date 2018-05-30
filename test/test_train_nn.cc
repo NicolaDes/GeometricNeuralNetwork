@@ -8,7 +8,6 @@
  */
 #define TRAIN_TEST_MODULE
 #include "NN.hpp"
-#include "Parser.hpp"
 #include "Vector.hpp"
 #include <chrono>
 #include <random>
@@ -37,7 +36,7 @@ int main()
     print_comment<const char *>("Opening file...");
     print_comment<const char *>(pos);
 
-    hand_number::fillFromFile(pos, inputs, outputs, 28, 28, 10);
+    NN::fillFromFile(pos, inputs, outputs, 28, 28, 10);
 
     print_comment<const char *>("Training the network...");
 
