@@ -31,6 +31,34 @@ else()
 	wget https://pjreddie.com/media/files/mnist_test.csv ../data/mnist_test.csv)
 endif()
 
+# Valgrind check
+find_program(VALGRIND valgrind)
+if(NOT VALGRIND)
+	message(WARNING "missing valgrind, this feature will not be active!")
+else()
+	add_custom_target(valgrind
+	valgrind ./vectorNeuralNetwork -t ../data/mnist_train.csv -p ../data/mnist_test.csv)
+endif()
+
+# Statistics
+find_program(CLOC cloc)
+if(NOT CLOC)
+	message(WARNING "missing cloc, this feature will not be active!")
+else()
+	add_custom_target(stats
+	cloc ${CMAKE_SOURCE_DIR} --exclude-dir=build)
+endif()
+
+# Complexity
+find_program(LIZARD lizard)
+if(NOT LIZARD)
+	message(WARNING "missing lizard, this feature will not be active!")
+else()
+	add_custom_target(cyclo
+	lizard --exclude \"*build*\" ../)
+endif()
+
+	
 # EXTERNAL LIBRARIES
 include (CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX14)

@@ -75,7 +75,7 @@ And a typical usage of the program is:
 \b NB: inside of buid directory
 
 \code
-./vectorNeuralNetwork -t ../data/train_set.csv -p ../data/test_set.csv -s weights.data
+./vectorNeuralNetwork -t ../data/mnist_train.csv -p ../data/mnist_test.csv -s weights.data
 \endcode
 And then it is possible to launch the network over 8.csv file:
 \code
