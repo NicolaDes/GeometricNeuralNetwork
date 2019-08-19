@@ -12,8 +12,6 @@
 #include <chrono>
 #include <random>
 
-using namespace laobject;
-
 template <typename T> constexpr void print_comment(T p_comment)
 {
     std::cout << p_comment << "\n";

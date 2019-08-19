@@ -13,16 +13,22 @@
 #include "Vector.hpp"
 
 #include <cassert>
-#include <chrono>
+#include <cmath>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <ostream>
-#include <random>
+
+/// TODO: create a utility file and put this there
+inline char activity_symbol(unsigned step) {
+    switch (step % 4) {
+    case 0: return '\\';
+    case 1: return '|';
+    case 2: return '/';
+    default: return '-';
+    }
+}
 
 using type = double; /// type of templates (laobject)
-
-using namespace laobject;
 
 /// @brief NN class is a neural network implemented with vectors
 class NN
@@ -98,7 +104,7 @@ class NN
      * @brief Return the weight of each node of the network
      * @return A vector of matrix wich is all the links  between nodes
      */
-    const Vector<Matrix<type>> getWeights();
+    Vector<Matrix<type>> getWeights();
 
     /**
      * @brief Save the weights in a specific file
@@ -113,15 +119,14 @@ class NN
     void loadWeights(const std::string &file);
 
     /**
-    * @brief Fill inputs and outputs vector of vectors with a csv format
-    * input filee
-    * @tparam T type of neural network
-    */
+     * @brief Fill inputs and outputs vector of vectors with a csv format
+     * input filee
+     * @tparam T type of neural network
+     */
     template <typename T>
-    static void fillFromFile(std::string file,
-                  laobject::Vector<laobject::Vector<T>> &inputs,
-                  laobject::Vector<laobject::Vector<T>> &outputs, size_t h,
-                  size_t w, size_t outsize);
+    static void fillFromFile(std::string file, Vector<Vector<T>> &inputs,
+                             Vector<Vector<T>> &outputs, size_t h, size_t w,
+                             size_t outsize);
 };
 
-#include "NN.i.hpp"
+#include "impl/NN.i.hpp"

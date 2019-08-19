@@ -11,31 +11,26 @@
 #include "LAObject.hpp"
 
 #include <iostream>
-#include <ostream>
 
-/// @brief Namespace brief
-///        This is a vector object of linear algebra
-namespace laobject
-{
-
-/// @brief Matrix class friend
-/// @tparam T Type of elements inside the vector object
+/// @brief This class models a matrix of elements.
+/// @tparam T Class template for linear algebra matrix (in general numbers)
 template <typename T> class Matrix;
 
-/// @brief This class model a vector of elements.
+/// @brief This class models a vector of elements.
 /// @tparam T Class template for linear algebra vector (in general numbers)
 template <typename T> class Vector : public LAObject<T>
 {
   public:
     /// Default constructor and constructor specifying size.
     explicit Vector(size_t size = 1);
+    Vector(const Vector<T> &);
     /// Destructor
     ~Vector();
 
     /**
-    * @brief Return the size of elements allocated
-    * @return number of allocated elements of type T.
-    */
+     * @brief Return the size of elements allocated
+     * @return number of allocated elements of type T.
+     */
     size_t size() const override;
     /// @brief Print the elements allocated
     void print() const override;
@@ -51,25 +46,25 @@ template <typename T> class Vector : public LAObject<T>
     size_t cols() const;
 
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to
-    * element in position i=1.
-    * @return read only pointer to @tparam T
-    */
+     * @brief Return pointer to location @p row. For example V[1] access to
+     * element in position i=1.
+     * @return read only pointer to @tparam T
+     */
     T at(size_t index) const;
 
     /// Operators
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to
-    * element in position i=1.
-    * @return read only element to
-    */
+     * @brief Return pointer to location @p row. For example V[1] access to
+     * element in position i=1.
+     * @return read only element to
+     */
     T operator[](size_t index) const;
     /**
-    * @brief Return pointer to location @p row. For example V[1] access to
-    * element in position i=1.
-    * V[5]=219.1 is a valid operation.
-    * @return read and write reference to
-    */
+     * @brief Return pointer to location @p row. For example V[1] access to
+     * element in position i=1.
+     * V[5]=219.1 is a valid operation.
+     * @return read and write reference to
+     */
     T &operator[](size_t index);
     /**
      * @brief Assignment operator
@@ -141,6 +136,5 @@ template <typename T> class Vector : public LAObject<T>
         return ret;
     }
 };
-} // namespace laobject
 
-#include "Vector.i.hpp"
+#include "impl/Vector.i.hpp"

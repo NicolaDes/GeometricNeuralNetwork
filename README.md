@@ -1,7 +1,7 @@
-# Geometric Neural Netowrk
-**Geometry Neural Network** is a Neural Network wich exploit linear algebra 
+# Geometric Neural Network
+**Geometry Neural Network** is a Neural Network wich exploit linear algebra
 objects to compute neural network operations. In general with a set of operations
-between linear algebra objects any form of the NN can be done. For example 
+between linear algebra objects any form of the NN can be done. For example
 also a Neural Network where each layer is a cube can be done.
 This operations are:
 - Dot product
@@ -54,7 +54,7 @@ $ ./vectorNeuralNetwork -h
 to see usage
 ### Example
 ```
-$ ./vectorNeuralNetwork -t ../data/mnist_train.csv 
+$ ./vectorNeuralNetwork -t ../data/mnist_train.csv
 ```
 
 ### Parameters istructions
@@ -71,7 +71,7 @@ file:
 ```
 
 ## Input files
-For the *Vector Neural Network* used the input present *28x28* neuron input and *10* output. 
+For the *Vector Neural Network* used the input present *28x28* neuron input and *10* output.
 Below there is an example where the number 8 in *gray-scale* is represented:
 ```
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -103,7 +103,7 @@ Below there is an example where the number 8 in *gray-scale* is represented:
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
-In detail the file format is composed with a number for each row where the first 
+In detail the file format is composed with a number for each row where the first
 value is the correct value and then *28x28* values are listed, one for each
 neuron input of the *Vector Neural Network*.
 

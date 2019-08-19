@@ -78,14 +78,14 @@ void NN::train(Vector<Vector<type>> &inputs, Vector<Vector<type>> &outputs,
     std::cout << "Training the network with " << size << " elements...\n";
 
     for (; i < size; ++i) {
-        std::cout << std::right << std::setw(6) << "["
-                  << static_cast<int>(i * 100 / size) << "%]"
-                  << "\r";
+        std::cout << "\r[" << activity_symbol(static_cast<unsigned>(i)) << "] "
+                  << static_cast<int>(i * 100 / size) << "% " << std::flush;
         backpropagation(inputs[i], outputs[i]);
         change_weights(alpha);
     }
-    std::cout << std::right << std::setw(6) << "[" << 100 << "%]"
-              << "\n";
+    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(100)) << "] "
+              << static_cast<int>(100 * 100 / size) << "% "
+              << std::flush;
 }
 
 bool NN::isCorrect(Vector<type> &expected)
@@ -104,7 +104,7 @@ bool NN::isCorrect(Vector<type> &expected)
 
 void NN::submit(Vector<type> &input) { feedforward(input); }
 
-const Vector<Matrix<type>> NN::getWeights()
+Vector<Matrix<type>> NN::getWeights()
 {
     Vector<Matrix<type>> ret(size_ - 1);
     ret[0] = W1;

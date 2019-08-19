@@ -15,7 +15,7 @@ if(DOXYGEN_FOUND)
 	message("Doxygen found!")
 
 	add_custom_target(doc
-	doxygen ${CMAKE_SOURCE_DIR}/docs/Doxyfile)
+	doxygen ${CMAKE_SOURCE_DIR}/Doxyfile)
 
 else (DOXYGEN_FOUND)
 	message("Doxygen need to be installed to generate the doxygen documentation")
@@ -26,8 +26,8 @@ find_program(WGET wget)
 if(NOT WGET)
 	message(WARNING "missing wget, check the site https://pjreddie.com/projects/mnist-in-csv to download datasets!")
 else()
-	add_custom_target(get_csv 
-	wget https://pjreddie.com/media/files/mnist_train.csv --output-document=../data/mnist_train.csv
+	add_custom_target(get_csv
+	wget https://pjreddie.com/media/files/mnist_train.csv --output-document=../data/mnist_train.csv &&
 	wget https://pjreddie.com/media/files/mnist_test.csv --output-document=../data/mnist_test.csv)
 endif()
 
@@ -58,7 +58,7 @@ else()
 	lizard --exclude \"*build*\" ../)
 endif()
 
-	
+
 # EXTERNAL LIBRARIES
 include (CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
@@ -86,13 +86,15 @@ configure_file (
 
 include_directories (include ${Boost_INCLUDE_DIRS})
 
+file(GLOB SOURCES "src/*.cpp")
+
 add_library(NN "src/NN.cpp")
 
 enable_testing()
 add_subdirectory(test)
 
-add_executable(vectorNeuralNetwork src/MainActivity.cpp)
-target_link_libraries(vectorNeuralNetwork NN)
+add_executable(vectorNeuralNetwork ${SOURCES})
+# target_link_libraries(vectorNeuralNetwork NN)
 target_link_libraries(vectorNeuralNetwork ${Boost_LIBRARIES})
 
 install(TARGETS vectorNeuralNetwork

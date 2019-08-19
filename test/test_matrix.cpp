@@ -12,8 +12,6 @@
 #include "Vector.hpp"
 #include <iostream>
 
-using namespace laobject;
-
 using type = double;
 
 template <typename T> constexpr void print_comment(T p_comment)
@@ -24,10 +22,10 @@ template <typename T> constexpr void print_comment(T p_comment)
 
 type vals(type val) { return val; }
 
-void testMult(Matrix<type> &m1, Matrix<type> &m2)
+void testMult(Matrix<type> &m1,Matrix<type> &m2)
 {
     print_comment<const char *>("Testing moltiplication");
-    Matrix<type> test = m1 * m2;
+    m1 * m2;
 }
 void testAdd(Matrix<type> &m1, Matrix<type> &m2)
 {

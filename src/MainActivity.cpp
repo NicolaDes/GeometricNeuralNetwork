@@ -7,9 +7,7 @@
  * @file
  */
 #include "Config.h"
-#include "Matrix.hpp"
 #include "NN.hpp"
-#include "Vector.hpp"
 
 #include "boost/program_options.hpp"
 
@@ -28,17 +26,13 @@ std::default_random_engine generator = std::default_random_engine(seed);
 std::uniform_real_distribution<type> distribution(0, 1);
 
 /// fully specialization
-template <>
-type randomize() 
-{ 
-    return distribution(generator); 
-}
+template <> type randomize() { return distribution(generator); }
 
-void print_green(const std::string& comment)
+void print_green(const std::string &comment)
 {
     std::cout << "\033[1;32m" << comment << "\033[0m";
 }
-void print_yellow(const std::string& comment)
+void print_yellow(const std::string &comment)
 {
     std::cout << "\033[1;33m" << comment << "\033[0m";
 }
@@ -113,12 +107,11 @@ int main(int argc, char **argv)
         while (std::getline(train_in, line))
             ++line_count;
 
-        laobject::Vector<laobject::Vector<type>> inputs_train(line_count);
-        laobject::Vector<laobject::Vector<type>> outputs_train(line_count);
+        Vector<Vector<type>> inputs_train(line_count);
+        Vector<Vector<type>> outputs_train(line_count);
 
         std::cout << "Loading data...\n";
-        NN::fillFromFile(file, inputs_train,
-                                  outputs_train, 28, 28, 10);
+        NN::fillFromFile(file, inputs_train, outputs_train, 28, 28, 10);
         print_green("Data loaded!\n");
 
         nn.train(inputs_train, outputs_train, configuration.alpha);
@@ -143,8 +136,8 @@ int main(int argc, char **argv)
         while (std::getline(file, line))
             ++line_count;
 
-        laobject::Vector<Vector<type>> inputs(line_count);
-        laobject::Vector<Vector<type>> outputs(line_count);
+        Vector<Vector<type>> inputs(line_count);
+        Vector<Vector<type>> outputs(line_count);
         std::cout << "Loading data...\n";
         NN::fillFromFile(filename, inputs, outputs, 28, 28, 10);
         print_green("Data loaded!\n");
@@ -159,7 +152,7 @@ int main(int argc, char **argv)
         std::cout << "-- Result of the computation --\n";
         std::cout << "Correct: " << correct
                   << "\nWrong: " << line_count - correct
-                  << "\nPercentage of success: "
+                  << "\nTotal: " << line_count << "\nPercentage of success: "
                   << (static_cast<double>(correct) /
                       static_cast<double>(line_count)) *
                          100
@@ -170,7 +163,7 @@ int main(int argc, char **argv)
     {
         print_yellow("You need to launch with parameters, see the docs!\n \
         Sorry but this is a pre-alpha version XD\n");
-        std::cout<<description<<"\n";
+        std::cout << description << "\n";
     }
     return 0;
 } // main

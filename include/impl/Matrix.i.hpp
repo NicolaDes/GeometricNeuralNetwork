@@ -1,7 +1,3 @@
-
-namespace laobject
-{
-
 template <typename T>
 Matrix<T>::Matrix(size_t rows, size_t cols) : LAObject<T>(rows * cols)
 {
@@ -9,6 +5,16 @@ Matrix<T>::Matrix(size_t rows, size_t cols) : LAObject<T>(rows * cols)
                                           // initialized!
     this->leading_ = cols;
     this->row_offeset_ = rows;
+}
+
+template <typename T>
+Matrix<T>::Matrix(const Matrix<T> &m) : LAObject<T>(m.row_offeset_ * m.leading_)
+{
+    this->size_ = m.size_;
+    this->leading_ = m.leading_;
+    this->row_offeset_ = m.row_offeset_;
+    this->values_ = new T[this->size_];
+    std::copy(m.values_, m.values_ + this->size_, this->values_);
 }
 
 template <typename T> Matrix<T>::~Matrix() { delete[] this->values_; }
@@ -159,4 +165,3 @@ template <typename T> Matrix<T> Matrix<T>::operator,(const Matrix<T> &m)
     }
     return ret;
 }
-} // namespace laobject

@@ -11,17 +11,12 @@
 #include "LAObject.hpp"
 
 #include <iostream>
-#include <ostream>
 
-/// @brief This is a matrix object of linear algebra
-namespace laobject
-{
-
-/// @brief Vector class friend
-/// @tparam T Type of elements inside the vector object
+/// @brief This class models a vector of elements.
+/// @tparam T Class template for linear algebra vector (in general numbers)
 template <typename T> class Vector;
 
-/// @brief This class model a matrix of elements.
+/// @brief This class models a matrix of elements.
 /// @tparam T Class template for linear algebra matrix (in general numbers)
 template <typename T> class Matrix : public LAObject<T>
 {
@@ -32,13 +27,14 @@ template <typename T> class Matrix : public LAObject<T>
   public:
     /// Default constructor and constructor specifying rows and cols.
     explicit Matrix(size_t rows = 1, size_t cols = 1);
+    Matrix(const Matrix<T> &);
     /// Destructor
     ~Matrix();
 
     /**
-    * @brief Return the size of elements allocated
-    * @return number of allocated elements of type T.
-    */
+     * @brief Return the size of elements allocated
+     * @return number of allocated elements of type T.
+     */
     size_t size() const override;
     /// @brief Print the elements allocated
     void print() const override;
@@ -56,23 +52,23 @@ template <typename T> class Matrix : public LAObject<T>
     /// Operators
 
     /**
-    * @brief Return pointer to location @p row. For example A[1][1] access to
-    * element in position i=1,j=1.
-    * @return read only pointer to @tparam T
-    */
+     * @brief Return pointer to location @p row. For example A[1][1] access to
+     * element in position i=1,j=1.
+     * @return read only pointer to @tparam T
+     */
     T *operator[](size_t row) const;
     /**
-    * @brief Return pointer to location @p row. For example A[1][1] access to
-    * element in position i=1,j=1.
-    *         Also A[1][1]=32 is a valid operation.
-    * @return read and write pointer to @tparam T
-    */
+     * @brief Return pointer to location @p row. For example A[1][1] access to
+     * element in position i=1,j=1.
+     *         Also A[1][1]=32 is a valid operation.
+     * @return read and write pointer to @tparam T
+     */
     T *operator[](size_t row);
     /**
      * @brief Define the transpose operator of a matrix. Return the transposed
      * matrix.
      * @return Matrix, this operation will not modify original matrix.
-    */
+     */
     Matrix<T> operator~() const;
     /**
      * @brief Define function application operator. This means that if f(T val)
@@ -162,6 +158,5 @@ template <typename T> class Matrix : public LAObject<T>
         return ret;
     }
 };
-} // namespace laobject
 
-#include "Matrix.i.hpp"
+#include "impl/Matrix.i.hpp"

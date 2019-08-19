@@ -1,10 +1,15 @@
 
-namespace laobject
-{
-
 template <typename T> Vector<T>::Vector(size_t size) : LAObject<T>(size)
 {
     this->values_ = new T[size]();
+}
+
+template <typename T>
+Vector<T>::Vector(const Vector<T> &v) : LAObject<T>(v.size_)
+{
+    this->size_ = v.size_;
+    this->values_ = new T[this->size_];
+    std::copy(v.values_, v.values_ + this->size_, this->values_);
 }
 
 template <typename T> Vector<T>::~Vector() { delete[] this->values_; }
@@ -102,4 +107,3 @@ template <typename T> Vector<T> Vector<T>::operator,(const Vector<T> &v)
     }
     return ret;
 }
-} // namespace laobject

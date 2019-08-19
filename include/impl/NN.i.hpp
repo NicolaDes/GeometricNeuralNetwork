@@ -9,10 +9,9 @@ template <typename T = type> inline T d_sigmoid(T x)
 template <typename T> T randomize() { return -1; }
 
 template <typename T>
-void NN::fillFromFile(std::string file,
-                  laobject::Vector<laobject::Vector<T>> &inputs,
-                  laobject::Vector<laobject::Vector<T>> &outputs, size_t h,
-                  size_t w, size_t outsize)
+void NN::fillFromFile(std::string file, Vector<Vector<T>> &inputs,
+                      Vector<Vector<T>> &outputs, size_t h, size_t w,
+                      size_t outsize)
 {
     std::ifstream fin(file);
     if (!fin.is_open()) {
@@ -22,11 +21,11 @@ void NN::fillFromFile(std::string file,
     size_t training_set;
     training_set = inputs.size();
     for (size_t k = 0; k < training_set; ++k) {
-        std::cout << std::right << std::setw(6) << "["
-                  << static_cast<int>(k * 100 / training_set) << "%]"
-                  << "\r";
-        laobject::Vector<T> input(h * w);
-        laobject::Vector<T> output(outsize);
+        std::cout << "\r[" << activity_symbol(static_cast<unsigned>(k)) << "] "
+                  << static_cast<int>(k * 100 / training_set) << "% "
+                  << std::flush;
+        Vector<T> input(h * w);
+        Vector<T> output(outsize);
         char c;
         size_t out;
         fin >> c;
@@ -45,6 +44,7 @@ void NN::fillFromFile(std::string file,
         inputs[k] = input;
         fin >> c;
     }
-    std::cout << std::right << std::setw(6) << "[" << 100 << "%]"
-              << "\r";
+    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(100)) << "] "
+              << static_cast<int>(100 * 100 / training_set) << "% "
+              << std::flush;
 }

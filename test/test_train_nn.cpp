@@ -30,8 +30,8 @@ int main()
     while (std::getline(file, line))
         ++line_count;
 
-    laobject::Vector<laobject::Vector<type>> inputs(line_count);
-    laobject::Vector<laobject::Vector<type>> outputs(line_count);
+    Vector<Vector<type>> inputs(line_count);
+    Vector<Vector<type>> outputs(line_count);
 
     print_comment<const char *>("Opening file...");
     print_comment<const char *>(pos);
