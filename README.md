@@ -1,5 +1,5 @@
 # Geometric Neural Network
-**Geometry Neural Network** is a Neural Network wich exploit linear algebra
+**Geometry Neural Network** is a Neural Network which exploit linear algebra
 objects to compute neural network operations. In general with a set of operations
 between linear algebra objects any form of the NN can be done. For example
 also a Neural Network where each layer is a cube can be done.
