@@ -59,8 +59,8 @@ $ ./vectorNeuralNetwork -t ../data/mnist_train.csv
 
 ### Parameters istructions
 - ` -s [--save] ` will save the configuration weigths at the end of the computation
-- ` -t [--train] arg ` will train the network with \i arg file in csv format
-- ` -p [--put-up] arg ` will submit a test set \i arg file in csv format
+- ` -t [--train] arg ` will train the network with arg file in csv format
+- ` -p [--put-up] arg ` will submit a test set arg file in csv format
 - ` -w [--weigths] arg ` will load the weights from a file in data format
 
 Multiple options can be concatenated, for example it is possible to load a current weights configuration, then train
