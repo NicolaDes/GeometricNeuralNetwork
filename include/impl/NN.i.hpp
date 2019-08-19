@@ -44,7 +44,6 @@ void NN::fillFromFile(std::string file, Vector<Vector<T>> &inputs,
         inputs[k] = input;
         fin >> c;
     }
-    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(100)) << "] "
-              << static_cast<int>(100 * 100 / training_set) << "% "
-              << std::flush;
+    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(4)) << "] "
+          << static_cast<int>(100) << "% " << std::flush;
 }

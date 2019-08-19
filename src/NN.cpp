@@ -83,9 +83,8 @@ void NN::train(Vector<Vector<type>> &inputs, Vector<Vector<type>> &outputs,
         backpropagation(inputs[i], outputs[i]);
         change_weights(alpha);
     }
-    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(100)) << "] "
-              << static_cast<int>(100 * 100 / size) << "% "
-              << std::flush;
+    std::cout << "\r[" << activity_symbol(static_cast<unsigned>(4)) << "] "
+              << static_cast<int>(100) << "% " << std::flush;
 }
 
 bool NN::isCorrect(Vector<type> &expected)
